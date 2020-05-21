@@ -1,9 +1,22 @@
 import React from 'react';
 
-const Home = () => (
-  <div>
-    <h1>Home Page</h1>
-  </div>
-);
+import Search from '../components/Search';
+import Card from '../components/Card';
+
+const Home = () => {
+  const cards = new Array(15).fill('').map((_, i) => i);
+  return (
+    <>
+      <Search />
+      <div className="row pt-4">
+        {cards.map((card) => (
+          <div className="col-sm-4 mb-4" key={card}>
+            <Card />
+          </div>
+        ))}
+      </div>
+    </>
+  );
+};
 
 export default Home;
