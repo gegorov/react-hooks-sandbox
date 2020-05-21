@@ -4,7 +4,7 @@ import GithubContext from '../context/github/githubContext';
 
 
 const Search = () => {
-  const { show } = useContext(AlertContext);
+  const alert = useContext(AlertContext);
   const github = useContext(GithubContext);
 
   const [value, setValue] = useState('');
@@ -12,12 +12,15 @@ const Search = () => {
     if (event.key !== 'Enter') {
       return;
     }
+
+    github.clearUsers();
+
     if (value.trim()) {
       // get data
-      console.log(`Make request with: ${value}`);
+      alert.hide();
       github.search(value.trim());
     } else {
-      show('Please enter correct value');
+      alert.show('Please enter correct value');
     }
   };
   return (
